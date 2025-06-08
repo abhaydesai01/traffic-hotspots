@@ -6,4 +6,4 @@ def show_map():
     return render_template('traffic_hotspot_map.html')
 
 if __name__ == '__main__':
-    app.run(debug=True,port=8070, host='0.0.0.0')
+    app.run(debug=True,port=5080, host='0.0.0.0')

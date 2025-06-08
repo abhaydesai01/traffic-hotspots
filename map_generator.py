@@ -3,9 +3,15 @@ import folium
 from folium.plugins import MarkerCluster
 import htmlmin
 import os
+import subprocess
 
-# Load data
+# Step 1: Download latest data from S3 before processing
+#subprocess.run(["python", "scripts/preload_data.py"], check=True)
+
+
 df = pd.read_csv("collisions.csv")
+# rest of your logic
+
 
 # Drop missing coordinates
 df = df.dropna(subset=["LATITUDE", "LONGITUDE"])

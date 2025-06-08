@@ -1,8 +1,11 @@
-# Ignore data files
-collision.csv
+# Data files
 *.csv
 *.json
+
+# Output directory
 output/
-*.parquet
-*.pkl
-*.json
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
