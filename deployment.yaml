@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traffic-hotspot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotspot
+  template:
+    metadata:
+      labels:
+        app: hotspot
+    spec:
+      containers:
+      - name: hotspot
+        image: 756999892440.dkr.ecr.ap-south-1.amazonaws.com/traffic-hubspot:latest
+        ports:
+        - containerPort: 5080

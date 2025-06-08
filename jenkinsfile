@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = 'ap-south-1'
+        S3_BUCKET = 'traffic-hubspot'
+    }
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/abhaydesai01/traffic-hotspots.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run PySpark ETL') {
+            steps {
+                sh 'python spark_etl.py'
+            }
+        }
+
+        stage('Generate Map') {
+            steps {
+                sh 'python map_generator.py'
+            }
+        }
+
+        stage('Upload HTML to S3 (optional)') {
+            steps {
+                sh 'aws s3 cp templates/traffic_hotspot_map.html s3://$S3_BUCKET/ --region $AWS_REGION'
+            }
+        }
+
+        stage('Deploy to EKS') {
+            steps {
+                sh './scripts/deploy_to_eks.sh'
+            }
+        }
+    }
+}
