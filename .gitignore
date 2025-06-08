@@ -1,8 +1,8 @@
-collisions.csv
-output/
-*.json
+# Ignore data files
+collision.csv
 *.csv
-*.pkl
-*.log
-*.zip
+*.json
+output/
 *.parquet
+*.pkl
+*.json
