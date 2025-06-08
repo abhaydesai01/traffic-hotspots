@@ -1,0 +1,7 @@
+output/
+*.json
+*.csv
+*.pkl
+*.log
+*.zip
+*.parquet
